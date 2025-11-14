@@ -2,6 +2,7 @@ import 'dart:math' show pi;
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:checkdreamproperty/models/format_inr.dart';
+import 'package:checkdreamproperty/sharedwidget/reusable_container.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
@@ -303,18 +304,16 @@ Widget _buildCarouselItem(String originalUrl) {
       Positioned(
         bottom: 12,
         left: 12,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.7),
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                blurRadius: 4,
-                offset: const Offset(0, 2),
-              ),
-            ],
-          ),
+        child: ReusableContainer(
+          backgroundColor: Colors.black.withOpacity(0.7),
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              blurRadius: 4,
+              offset: const Offset(0, 2),
+            ),
+          ],
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -436,13 +435,11 @@ Widget _buildImageCarousel(String? propertyStatus) {
       images.map((e) => e.toString()).where((url) => url.isNotEmpty).toList();
 
   if (imageStrings.isEmpty) {
-    return Container(
+    return ReusableContainer(
       height: 230,
       width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.grey[200],
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
-      ),
+      backgroundColor: Colors.grey[200],
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -494,19 +491,17 @@ Widget _buildImageCarousel(String? propertyStatus) {
             Positioned(
               top: 12,
               right: 12,
-              child: Container(
+              child: ReusableContainer(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 4,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
+                backgroundColor: Colors.black.withOpacity(0.8),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -542,19 +537,17 @@ Widget _buildImageCarousel(String? propertyStatus) {
             Positioned(
               bottom: 12,
               right: 12,
-              child: Container(
+              child: ReusableContainer(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.7),
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 4,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
+                backgroundColor: Colors.black.withOpacity(0.7),
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -582,19 +575,17 @@ Widget _buildImageCarousel(String? propertyStatus) {
             Positioned(
               top: 12,
               right: 12,
-              child: Container(
+              child: ReusableContainer(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(6),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 4,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
+                backgroundColor: Colors.blue,
+                borderRadius: BorderRadius.circular(6),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
                 child: Text(
                   propertyStatus.toUpperCase(),
                   style: const TextStyle(
@@ -1111,14 +1102,12 @@ bool _hasLoadingImages() {
                           ),
                         ),
                         if (negotiablePrice)
-                          Container(
+                          ReusableContainer(
                             margin: const EdgeInsets.only(left: 8),
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 4, vertical: 2),
-                            decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius: BorderRadius.circular(4),
-                            ),
+                            backgroundColor: Colors.green,
+                            borderRadius: BorderRadius.circular(4),
                             child: const Text(
                               'NEGOTIABLE',
                               style: TextStyle(
@@ -1148,14 +1137,12 @@ bool _hasLoadingImages() {
                         // ),
                         const Spacer(),
                         if (urgentSale)
-                          Container(
+                          ReusableContainer(
                             margin: const EdgeInsets.only(left: 8),
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 4, vertical: 2),
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(4),
-                            ),
+                            backgroundColor: Colors.red,
+                            borderRadius: BorderRadius.circular(4),
                             child: Text(
                               'URGENT SALE',
                               style: TextStyle(

@@ -5,6 +5,8 @@ import '../widgets/property_list_widget.dart';
 import '../../add_property_dialog.dart';
 import '../../domain/entities/property.dart';
 import '../../firebase_test.dart';
+import '../../sharedwidget/reusable_app_bar.dart';
+import '../../sharedwidget/reusable_icon_button.dart';
 
 class HomePageWrapper extends ConsumerWidget {
   const HomePageWrapper({super.key});
@@ -23,13 +25,13 @@ class HomePage extends ConsumerWidget {
     final propertiesAsyncValue = ref.watch(propertyListProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Check Dream Property'),
+      appBar: ReusableAppBar(
+        titleText: 'Check Dream Property',
         backgroundColor: const Color(0xFFFF6B00),
-        foregroundColor: Colors.white,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.bug_report),
+          ReusableIconButton(
+            icon: Icons.bug_report,
+            iconColor: Colors.white,
             onPressed: () async {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Testing Firebase connection...')),

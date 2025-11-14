@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
+import 'package:checkdreamproperty/sharedwidget/reusable_app_bar.dart';
+import 'package:checkdreamproperty/sharedwidget/reusable_circle_avatar.dart';
+import 'package:checkdreamproperty/sharedwidget/reusable_container.dart';
 
 class AnalyticsDataScreen extends StatefulWidget {
   const AnalyticsDataScreen({super.key});
@@ -202,8 +205,8 @@ class _AnalyticsDataScreenState extends State<AnalyticsDataScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Property Analytics'),
+      appBar: ReusableAppBar(
+        titleText: 'Property Analytics',
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: [
           IconButton(
@@ -268,10 +271,11 @@ class _AnalyticsDataScreenState extends State<AnalyticsDataScreen>
           padding: const EdgeInsets.all(8.0),
           child: Card(
             child: ListTile(
-              leading: CircleAvatar(
+              leading: ReusableCircleAvatar(
+                initials: '${index + 1}',
+                radius: 20,
                 backgroundColor: Theme.of(context).colorScheme.primary,
-                foregroundColor: Colors.white,
-                child: Text('${index + 1}'),
+                textColor: Colors.white,
               ),
               title: Text(
                 property['title'] ?? 'No Title',
@@ -413,9 +417,11 @@ class _AnalyticsDataScreenState extends State<AnalyticsDataScreen>
           padding: const EdgeInsets.all(8.0),
           child: Card(
             child: ListTile(
-              leading: CircleAvatar(
+              leading: ReusableCircleAvatar(
+                initials: '${hour}h',
+                radius: 20,
                 backgroundColor: _getHourColor(hour),
-                child: Text('${hour}h'),
+                textColor: Colors.white,
               ),
               title: Text(timeString),
               subtitle: Row(
@@ -450,10 +456,11 @@ class _AnalyticsDataScreenState extends State<AnalyticsDataScreen>
           padding: const EdgeInsets.all(8.0),
           child: Card(
             child: ListTile(
-              leading: CircleAvatar(
+              leading: ReusableCircleAvatar(
+                initials: '#${index + 1}',
+                radius: 20,
                 backgroundColor: Colors.purple,
-                foregroundColor: Colors.white,
-                child: Text('#${index + 1}'),
+                textColor: Colors.white,
               ),
               title: Text('User: ...$shortFingerprint'),
               subtitle: Column(
@@ -512,13 +519,11 @@ class _AnalyticsDataScreenState extends State<AnalyticsDataScreen>
                   children: [
                     const Text('Conversion Rate: ',
                         style: TextStyle(fontWeight: FontWeight.w500)),
-                    Container(
+                    ReusableContainer(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: _getConversionRateColor(conversionRate),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
+                      backgroundColor: _getConversionRateColor(conversionRate),
+                      borderRadius: BorderRadius.circular(12),
                       child: Text(
                         '${conversionRate.toStringAsFixed(1)}%',
                         style: const TextStyle(
@@ -566,13 +571,11 @@ class _AnalyticsDataScreenState extends State<AnalyticsDataScreen>
 
   // Helper Widgets
   Widget _buildStatChip(String text, Color color) {
-    return Container(
+    return ReusableContainer(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: color.withOpacity(0.3)),
-      ),
+      backgroundColor: color.withOpacity(0.1),
+      borderRadius: BorderRadius.circular(12),
+      border: Border.all(color: color.withOpacity(0.3)),
       child: Text(
         text,
         style:
@@ -612,21 +615,17 @@ class _AnalyticsDataScreenState extends State<AnalyticsDataScreen>
         : 100;
     final intensity = clicks / maxClicks;
 
-    return Container(
+    return ReusableContainer(
       width: 60,
       height: 8,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
-        color: Colors.grey[200],
-      ),
+      borderRadius: BorderRadius.circular(4),
+      backgroundColor: Colors.grey[200],
       child: FractionallySizedBox(
         alignment: Alignment.centerLeft,
         widthFactor: intensity,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            color: Theme.of(context).primaryColor,
-          ),
+        child: ReusableContainer(
+          borderRadius: BorderRadius.circular(4),
+          backgroundColor: Theme.of(context).primaryColor,
         ),
       ),
     );

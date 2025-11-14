@@ -11,6 +11,8 @@ import 'package:universal_html/html.dart' as html;
 import 'package:http/http.dart' as http;
 
 import '../models/youtube_helper.dart';
+import '../sharedwidget/reusable_icon_button.dart';
+import '../sharedwidget/reusable_container.dart';
 
 class MediaGalleryPreview extends StatefulWidget {
   final List<String> mediaUrls;
@@ -451,13 +453,10 @@ class _MediaGalleryPreviewState extends State<MediaGalleryPreview> {
             Positioned(
               bottom: 40,
               left: 20,
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.7),
-                  borderRadius: BorderRadius.circular(20),
-                ),
+              child: ReusableContainer(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                backgroundColor: Colors.black.withOpacity(0.7),
+                borderRadius: BorderRadius.circular(20),
                 child: Text(
                   '${_currentIndex + 1} / ${widget.mediaUrls.length}',
                   style: const TextStyle(color: Colors.white),
@@ -475,13 +474,10 @@ class _MediaGalleryPreviewState extends State<MediaGalleryPreview> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Rotation controls
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.7),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
+                ReusableContainer(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  backgroundColor: Colors.black.withOpacity(0.7),
+                  borderRadius: BorderRadius.circular(20),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -496,13 +492,13 @@ class _MediaGalleryPreviewState extends State<MediaGalleryPreview> {
                       ),
                       if (_rotationAngles[_currentIndex] != 0.0) ...[
                         const SizedBox(width: 4),
-                        IconButton(
-                          icon: const Icon(Icons.refresh,
-                              color: Colors.white, size: 18),
+                        ReusableIconButton(
+                          icon: Icons.refresh,
+                          iconColor: Colors.white,
+                          iconSize: 18,
                           onPressed: _resetRotation,
                           tooltip: 'Reset rotation',
                           padding: const EdgeInsets.all(8),
-                          constraints: const BoxConstraints(),
                         ),
                       ],
                     ],
@@ -510,8 +506,10 @@ class _MediaGalleryPreviewState extends State<MediaGalleryPreview> {
                 ),
 
                 // Close button
-                IconButton(
-                  icon: const Icon(Icons.close, color: Colors.white, size: 28),
+                ReusableIconButton(
+                  icon: Icons.close,
+                  iconColor: Colors.white,
+                  iconSize: 28,
                   onPressed: () => Navigator.of(context).pop(),
                 ),
               ],
@@ -538,13 +536,10 @@ class _MediaGalleryPreviewState extends State<MediaGalleryPreview> {
                 // Rotation angle indicator (only show if rotated)
                 if (_rotationAngles[_currentIndex] != 0.0) ...[
                   const SizedBox(height: 12),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.7),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
+                  ReusableContainer(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    backgroundColor: Colors.black.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(20),
                     child: Text(
                       '${((_rotationAngles[_currentIndex]! * 180 / math.pi) % 360).round()}°',
                       style: const TextStyle(color: Colors.white, fontSize: 12),
@@ -560,13 +555,10 @@ class _MediaGalleryPreviewState extends State<MediaGalleryPreview> {
             Positioned(
               bottom: 100,
               left: 20,
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: Colors.red.withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(20),
-                ),
+              child: ReusableContainer(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                backgroundColor: Colors.red.withOpacity(0.8),
+                borderRadius: BorderRadius.circular(20),
                 child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [

@@ -2,6 +2,8 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../sharedwidget/reusable_circle_avatar.dart';
+import '../sharedwidget/reusable_container.dart';
 
 class ContactUsPage extends StatelessWidget {
   const ContactUsPage({super.key});
@@ -93,9 +95,9 @@ class ContactUsPage extends StatelessWidget {
           ),
 
           // Footer
-          Container(
+          ReusableContainer(
             padding: const EdgeInsets.symmetric(vertical: 20),
-            color: const Color(0xFF333333),
+            backgroundColor: const Color(0xFF333333),
             child: Center(
               child: Text(
                 '© ${DateTime.now().year} Check Dream Property.',
@@ -241,12 +243,11 @@ class ContactUsPage extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CircleAvatar(
-          backgroundColor:
-              Theme.of(context).colorScheme.primary.withOpacity(0.1),
+        ReusableCircleAvatar(
+          backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
           radius: 25,
-          child: Icon(icon,
-              color: Theme.of(context).colorScheme.primary, size: 24),
+          fallbackIcon: icon,
+          textColor: Theme.of(context).colorScheme.primary,
         ),
         const SizedBox(width: 15),
         Expanded(
