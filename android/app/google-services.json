@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1070697801997",
+    "firebase_url": "https://checkdreamproperty-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "checkdreamproperty",
+    "storage_bucket": "checkdreamproperty.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070697801997:android:986369bc41a02cb0046844",
+        "android_client_info": {
+          "package_name": "com.example.checkdreamproperty"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbpcuej462lQBJg6uggXijnEShNbdSkI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
