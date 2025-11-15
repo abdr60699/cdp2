@@ -3,9 +3,9 @@ import 'dart:math' show pi;
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:checkdreamproperty/models/format_inr.dart';
 import 'package:checkdreamproperty/sharedwidget/reusable_container.dart';
+import 'package:checkdreamproperty/sharedwidget/reusable_youtube_player.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import 'models/clicl_track.dart';
 import 'models/url_expander_service.dart';
@@ -47,7 +47,7 @@ class _PropertyCardState extends State<PropertyCard>
   final Map<String, double> _imageRotations = {};
   final Map<String, bool> _loadingPreview = {};
   // YouTube controllers map
-  final Map<String, YoutubePlayerController> _youtubeControllers = {};
+  final Map<String, ReusableYoutubePlayerController> _youtubeControllers = {};
   final Set<String> _playingVideos = {};
 
   // Click tracking service

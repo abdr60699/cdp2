@@ -6,13 +6,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:http/http.dart' as http;
 
 import '../models/youtube_helper.dart';
 import '../sharedwidget/reusable_icon_button.dart';
 import '../sharedwidget/reusable_container.dart';
+import '../sharedwidget/reusable_youtube_player.dart';
 
 class MediaGalleryPreview extends StatefulWidget {
   final List<String> mediaUrls;
@@ -26,7 +26,7 @@ class MediaGalleryPreview extends StatefulWidget {
 class _MediaGalleryPreviewState extends State<MediaGalleryPreview> {
   late PageController _pageController;
   int _currentIndex = 0;
-  final Map<int, YoutubePlayerController> _youtubeControllers = {};
+  final Map<int, ReusableYoutubePlayerController> _youtubeControllers = {};
 
   // Track rotation for each media item
   final Map<int, double> _rotationAngles = {};
@@ -112,25 +112,17 @@ class _MediaGalleryPreviewState extends State<MediaGalleryPreview> {
     }
   }
 
-  YoutubePlayerController _getYouTubeController(String videoId, int index) {
+  ReusableYoutubePlayerController _getYouTubeController(String videoId, int index) {
     if (_youtubeControllers[index] != null) {
       return _youtubeControllers[index]!;
     }
 
     try {
-      final controller = YoutubePlayerController(
-        initialVideoId: videoId,
-        params: const YoutubePlayerParams(
-          autoPlay: true,
-          showControls: true,
-          showFullscreenButton: true,
-          enableCaption: false,
-          privacyEnhanced: false,
-          playsInline: true,
-          mute: false,
-          loop: false,
-          enableJavaScript: true,
-        ),
+      final controller = ReusableYoutubePlayerController(
+        videoId: videoId,
+        autoPlay: false,
+        loop: false,
+        mute: false,
       );
 
       _youtubeControllers[index] = controller;
@@ -244,8 +236,10 @@ class _MediaGalleryPreviewState extends State<MediaGalleryPreview> {
           mediaWidget = Container(
             color: Colors.black,
             child: Center(
-              child: YoutubePlayerIFrame(
-                controller: controller,
+              child: ReusableYoutubePlayer(
+                videoId: videoId,
+                autoPlay: false,
+                loop: false,
               ),
             ),
           );
