@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:checkdreamproperty/models/format_inr.dart';
 import 'package:checkdreamproperty/models/youtube_helper.dart';
+import 'package:checkdreamproperty/sharedwidget/reusable_text_form_field.dart';
+import 'package:checkdreamproperty/sharedwidget/reusable_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -873,10 +875,10 @@ Future<void> _processSelectedImage(XFile image) async {
               ),
             ),
             const SizedBox(width: 8),
-            IconButton(
+            ReusableIconButton(
               onPressed: _addImageUrl,
-              icon:
-                  Icon(Icons.add_circle, color: Theme.of(context).primaryColor),
+              icon: Icons.add_circle,
+              iconColor: Theme.of(context).primaryColor,
               iconSize: 22,
             ),
           ],
@@ -1164,37 +1166,14 @@ Future<void> _processSelectedImage(XFile image) async {
   }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
-      child: TextFormField(
-        onChanged: onChanged,
+      child: ReusableTextFormField(
+        label: label,
+        hintText: hint,
         controller: controller,
-        keyboardType: keyboardType,
+        keyboardType: keyboardType ?? TextInputType.text,
         validator: validator,
-        textCapitalization: TextCapitalization.sentences,
-        style: GoogleFonts.poppins(fontSize: 14),
-        decoration: InputDecoration(
-          labelText: label,
-          hintText: hint,
-          prefixIcon: prefixIcon != null ? Icon(prefixIcon, size: 20) : null,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Colors.grey.shade300),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(
-              color: Theme.of(context).colorScheme.primary,
-              width: 2,
-            ),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Colors.grey.shade300),
-          ),
-          filled: true,
-          fillColor: Colors.grey.shade50,
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        ),
+        onChanged: onChanged,
+        prefixIcon: prefixIcon != null ? Icon(prefixIcon, size: 20) : null,
       ),
     );
   }
@@ -1270,18 +1249,19 @@ Future<void> _processSelectedImage(XFile image) async {
                   ),
                 ),
                 if (_phoneNumbers.length > 1)
-                  IconButton(
+                  ReusableIconButton(
                     onPressed: () => _removePhoneNumber(index),
-                    icon: const Icon(Icons.remove_circle, color: Colors.red),
+                    icon: Icons.remove_circle,
+                    iconColor: Colors.red,
                     iconSize: 24,
                   ),
                 if (index ==
                     _phoneNumbers.length -
                         1) // Only show add button on last item
-                  IconButton(
+                  ReusableIconButton(
                     onPressed: _addPhoneNumber,
-                    icon: Icon(Icons.add_circle,
-                        color: Theme.of(context).primaryColor),
+                    icon: Icons.add_circle,
+                    iconColor: Theme.of(context).primaryColor,
                     iconSize: 24,
                   ),
               ],
@@ -1303,42 +1283,24 @@ Future<void> _processSelectedImage(XFile image) async {
             child: Row(
               children: [
                 Expanded(
-                  child: TextFormField(
+                  child: ReusableTextFormField(
                     initialValue: _landmarks[index],
+                    hintText: 'Landmark',
                     onChanged: (value) => _landmarks[index] = value,
-                    decoration: InputDecoration(
-                      hintText: 'Landmark',
-                      prefixIcon: const Icon(Icons.location_on, size: 20),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: Colors.grey.shade300),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                          color: Theme.of(context).colorScheme.primary,
-                          width: 2,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: Colors.grey.shade300),
-                      ),
-                      filled: true,
-                      fillColor: Colors.grey.shade50,
-                    ),
+                    prefixIcon: const Icon(Icons.location_on, size: 20),
                   ),
                 ),
                 if (_landmarks.length > 1)
-                  IconButton(
+                  ReusableIconButton(
                     onPressed: () => _removeLandmark(index),
-                    icon: const Icon(Icons.remove_circle, color: Colors.red),
+                    icon: Icons.remove_circle,
+                    iconColor: Colors.red,
                     iconSize: 20,
                   ),
-                IconButton(
+                ReusableIconButton(
                   onPressed: _addLandmark,
-                  icon: Icon(Icons.add_circle,
-                      color: Theme.of(context).primaryColor),
+                  icon: Icons.add_circle,
+                  iconColor: Theme.of(context).primaryColor,
                   iconSize: 20,
                 ),
               ],
